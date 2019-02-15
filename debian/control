@@ -2,7 +2,7 @@ Source: n4d-client-exe-consumer
 Section: admin
 Priority: extra
 Maintainer: Hector Garcia Huerta <lliurex_devel1@edu.gva.es>
-Build-Depends: debhelper (>= 100), n4d-dev
+Build-Depends: debhelper (>= 10), n4d-dev
 Standards-Version: 4.1.2
 Homepage: http://www.lliurex.net
 #Vcs-Svn: http://svn.lliurex.net/pandora/n4d-client-exe-consumer/trunk
