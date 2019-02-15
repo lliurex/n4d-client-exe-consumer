@@ -1,3 +1,9 @@
+n4d-client-exe-consumer (0.4.13) bionic; urgency=medium
+
+  * Initial release for bionic
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Fri, 15 Feb 2019 10:23:21 +0100
+
 n4d-client-exe-consumer (0.4.3) xenial; urgency=high
 
   * Adding sudo group
