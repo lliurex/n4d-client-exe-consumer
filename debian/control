@@ -10,7 +10,7 @@ Homepage: http://www.lliurex.net
 Package: n4d-client-exe-consumer
 Architecture: all
 Pre-depends: n4d
-Depends: ${shlibs:Depends}, ${misc:Depends}, python
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3
 Description: N4D plugin to consume n4d-client-exe-manager scripts
  Plugin to consume n4d-client-exe-manager scripts
  
