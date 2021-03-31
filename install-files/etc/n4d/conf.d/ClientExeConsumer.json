@@ -1,0 +1,15 @@
+{
+	"SETUP":{
+		"type":"python",
+		"path":"ClientExeConsumer.py",
+		"class":"ClientExeConsumer"
+	},	
+	"METHODS":{
+		"force_execution":{
+			"allowed_groups": [
+				"sudo",
+				"admins"
+			]
+		}
+	}
+}

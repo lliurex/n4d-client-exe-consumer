@@ -1,9 +1,5 @@
 {
     "CLIENT_EXE_SERVER": {
-        "function": "lliurex.variables.client_exe_server.init", 
-        "packages": [
-            "n4d-client-exe-consumer"
-        ], 
         "description": "Remote server for startup scripts download", 
         "value": null
     }

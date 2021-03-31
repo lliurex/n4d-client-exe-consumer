@@ -1,4 +1,4 @@
-import xmlrpclib
+import xmlrpc.client
 import tempfile
 import os
 import os.path
@@ -6,18 +6,27 @@ import stat
 import time
 import subprocess
 import netifaces
+import n4d.server.core
+import n4d.responses
+import ssl
+
  
 class ClientExeConsumer:
 	
 	LOG_FILE="/var/log/n4d/client-consumer"
 
+	def __init__(self):
 
+		self.core=n4d.server.core.Core.get_core()
+
+	#def __init__	
+	
 	def startup(self,options):
 	
 		if not self.check_semiclient():
-		
-			if objects['VariablesManager'].get_variable('CLIENT_EXE_SERVER') is None:
-				objects['VariablesManager'].init_variable('CLIENT_EXE_SERVER')
+			
+			if not self.core.variable_exists('CLIENT_EXE_SERVER').get('return',None):
+				self.core.set_variable('CLIENT_EXE_SERVER','server')
 			
 			# one shots
 			
@@ -28,7 +37,7 @@ class ClientExeConsumer:
 				self.execute_and_delete(ret)
 				
 			except Exception as e:
-				print e
+				print(str(e))
 			
 		# boot scripts
 		
@@ -36,7 +45,7 @@ class ClientExeConsumer:
 			mac=self.get_mac_from_ip(self.get_ip_from_cmdline())
 			self.execute_boot_scripts(mac)
 		except Exception as e:
-			print e
+			print(str(e))
 		
 	#def startup
 
@@ -70,11 +79,12 @@ class ClientExeConsumer:
 		ret_list=[]
 		
 		try:
-			srv=objects["VariablesManager"].get_variable("CLIENT_EXE_SERVER")
+			srv=self.core.get_variable("CLIENT_EXE_SERVER").get('return',None)
 
 			if srv!=None and type(srv)==type(""):
-				c=xmlrpclib.ServerProxy("https://"+srv+":9779",allow_none=True)
-				ret=c.get_available_oneshots("","ClientExeManager",self.md5_log)
+				context=ssl._create_unverified_context()
+				c=xmlrpc.client.ServerProxy("https://"+srv+":9779",context=context,allow_none=True)
+				ret=c.get_available_oneshots("","ClientExeManager",self.md5_log).get('return',None)
 				if type(ret)==type([]):
 				
 					for item in ret:
@@ -91,7 +101,7 @@ class ClientExeConsumer:
 						self.add_md5(md5)
 				
 		except Exception as e:
-			print e
+			print(str(e))
 			pass
 		
 		return ret_list
@@ -136,19 +146,22 @@ class ClientExeConsumer:
 				if force_all:
 					self.md5_log=[]
 				
-				ret=self.get_exes()
+				ret=self.get_oneshots()
 				self.execute_and_delete(ret)
 				
 				if force_all:
 					self.read_log()
 			
-				return [True,""]
+				#Old n4d:return [True,""]
+				return n4d.responses.build_successful_call_response(True)
 			except Exception as e:
-				print(e)
-				return [False,str(e)]
+				print(str(e))
+				#Old n4d:return [False,str(e)]
+				return n4d.responses.build_successful_call_response(False,str(e))
 				
 		else:
-			return [False,"Semiclient found"]
+			#Old n4d:return [False,"Semiclient found"]
+			return n4d.responses.build_successful_call_response(False,"Semiclient found")
 		
 	#def force_execution
 	
@@ -162,7 +175,7 @@ class ClientExeConsumer:
 				if info[netifaces.AF_INET][0]["addr"]==ip:
 					return info[netifaces.AF_LINK][0]["addr"]
 			except Exception as e:
-				print e
+				print(str(e))
 				
 		return None
 		
@@ -190,19 +203,20 @@ class ClientExeConsumer:
 	
 	def execute_boot_scripts(self,mac):
 		
-		srv=objects["VariablesManager"].get_variable("CLIENT_EXE_SERVER")
+		srv=self.core.get_variable("CLIENT_EXE_SERVER").get('return',None)
 		
 		if srv==None:
 			srv="server"
-		
-		c=xmlrpclib.ServerProxy("https://%s:9779"%srv,allow_none=True)
+
+		context=ssl._create_unverified_context()
+		c=xmlrpc.client.ServerProxy("https://%s:9779"%srv,context=context,allow_none=True)
 		ret=c.get_boot_scripts("","ClientExeManager",mac)
 
-		if ret["status"]==True:
+		if ret["status"]==0:
 				
 			f_list=[]
 				
-			for file_content in ret["data"]:
+			for file_content in ret["return"]:
 					
 				tmp=tempfile.mkstemp()
 				f=open(tmp[1],"w")
