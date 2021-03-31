@@ -1,0 +1,16 @@
+Source: n4d-client-exe-consumer
+Section: admin
+Priority: extra
+Maintainer: Hector Garcia Huerta <lliurex_devel1@edu.gva.es>
+Build-Depends: debhelper (>= 10), n4d-dev
+Standards-Version: 4.1.2
+Homepage: http://www.lliurex.net
+#Vcs-Svn: http://svn.lliurex.net/pandora/n4d-client-exe-consumer/trunk
+
+Package: n4d-client-exe-consumer
+Architecture: all
+Pre-depends: n4d
+Depends: ${shlibs:Depends}, ${misc:Depends}, python
+Description: N4D plugin to consume n4d-client-exe-manager scripts
+ Plugin to consume n4d-client-exe-manager scripts
+ 
