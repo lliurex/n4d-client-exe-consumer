@@ -1,0 +1,53 @@
+n4d-client-exe-consumer (0.5.13) focal; urgency=medium
+
+  * Initial release for focal
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 31 Mar 2021 13:43:25 +0200
+
+n4d-client-exe-consumer (0.4.13) bionic; urgency=medium
+
+  * Initial release for bionic
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Fri, 15 Feb 2019 10:23:21 +0100
+
+n4d-client-exe-consumer (0.4.3) xenial; urgency=high
+
+  * Adding sudo group
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 13 Feb 2019 10:29:33 +0100
+
+n4d-client-exe-consumer (0.4.2) xenial; urgency=high
+
+  * Adding allow_none to xmlrpc client 
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 05 May 2017 14:50:15 +0200
+
+n4d-client-exe-consumer (0.4.1) xenial; urgency=high
+
+  * First xenial release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 29 Mar 2016 12:46:27 +0200
+
+n4d-client-exe-consumer (0.4) trusty; urgency=high
+
+  * Adding boot actions support
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 28 Jan 2016 11:58:46 +0100
+
+n4d-client-exe-consumer (0.3) trusty; urgency=medium
+
+  * First trusty release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 15 Jan 2015 12:16:15 +0100
+
+n4d-client-exe-consumer (0.2) precise; urgency=low
+
+  * UNRELEASED
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 25 Oct 2013 10:24:22 +0200
+
+n4d-client-exe-consumer (0.1) precise; urgency=low
+
+  * First Release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 22 Oct 2013 08:48:02 +0200
