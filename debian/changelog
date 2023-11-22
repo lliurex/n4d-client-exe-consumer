@@ -1,3 +1,9 @@
+n4d-client-exe-consumer (0.15.13) jammy; urgency=medium
+
+  * Initial release for Jammy
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 22 Nov 2023 16:36:23 +0100
+
 n4d-client-exe-consumer (0.5.13) focal; urgency=medium
 
   * Initial release for focal
